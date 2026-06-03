@@ -17,6 +17,7 @@ import { FaRegEdit } from "react-icons/fa";
 
 export function EditModal({ destination }) {
   const {
+    _id,
     destinationName,
     imageUrl,
     country,
@@ -34,16 +35,16 @@ export function EditModal({ destination }) {
 
     console.log(destination, "formData working or not: ");
 
-    // const res = await fetch("http://localhost:5000/destination", {
-    //   method: "POST",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(destination),
-    // });
-    // const data = await res.json();
+    const res = await fetch(`http://localhost:5000/destination/${_id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(destination),
+    });
+    const data = await res.json();
 
-    // console.log(data, "Edited Data");
+    console.log(data, "Edited Data from EditModal");
   };
   return (
     <Modal>

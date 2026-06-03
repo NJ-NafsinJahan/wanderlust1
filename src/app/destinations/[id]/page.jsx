@@ -6,6 +6,7 @@ import { IoArrowBackSharp, IoCalendarOutline } from "react-icons/io5";
 import { Button } from "@heroui/react";
 import Link from "next/link";
 import { EditModal } from "@/components/EditModal";
+import { DeleteAlert } from "@/components/DeleteAlert";
 
 const DestinationDetailsPage = async ({ params }) => {
   const { id } = await params;
@@ -39,7 +40,10 @@ const DestinationDetailsPage = async ({ params }) => {
           {/* <Button variant="outline" className="rounded-xl mb-3">
             <FaRegEdit /> Edit
           </Button> */}
-          <EditModal destination={destination}></EditModal>
+          <div className="flex justify-between items-center gap-5">
+            <EditModal destination={destination}></EditModal>
+            <DeleteAlert destination={destination}></DeleteAlert>
+          </div>
         </div>
         <Image
           src={imageUrl}
