@@ -3,9 +3,11 @@ import Image from "next/image";
 import { FiArrowUpRight, FiMapPin } from "react-icons/fi";
 import { IoCalendarOutline } from "react-icons/io5";
 import { Button } from "@heroui/react";
+import Link from "next/link";
 
 const DestinationCard = ({ destination }) => {
-  const { destinationName, imageUrl, country, price, duration } = destination;
+  const { _id, destinationName, imageUrl, country, price, duration } =
+    destination;
   return (
     <div className="border m-4 p-3">
       {/* <h1>Destination Card</h1> */}
@@ -33,13 +35,18 @@ const DestinationCard = ({ destination }) => {
           </p>
         </div>
       </div>
-      <Button
-        fullWidth
-        className="mt-3 bg-cyan-400 text-black font-semibold text-[16px]"
-      >
-        {" "}
-        Book Now <FiArrowUpRight />
-      </Button>
+
+      {/* button href */}
+
+      <Link href={`/destinations/${_id}`}>
+        <Button
+          fullWidth
+          className="mt-3 bg-cyan-400 text-black font-semibold text-[16px]"
+        >
+          {" "}
+          Book Now <FiArrowUpRight />
+        </Button>
+      </Link>
     </div>
   );
 };
