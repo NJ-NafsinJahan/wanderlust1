@@ -15,7 +15,7 @@ import { Card } from "@heroui/react";
 import { redirect } from "next/navigation";
 import React from "react";
 
-const SignUpPage = () => {
+const LogInPage = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -24,13 +24,11 @@ const SignUpPage = () => {
 
     // console.log(user, "new user data");
     // ***************
-    const { data, error } = await authClient.signUp.email({
+    const { data, error } = await authClient.signIn.email({
       email: user.email,
       password: user.password,
-      name: user.name,
-      image: user.image,
     });
-    // console.log(data, error);
+    console.log(data, error);
     if (data) {
       toast.success("Account created successfully");
       redirect("/");
@@ -43,24 +41,12 @@ const SignUpPage = () => {
   return (
     <div className=" max-w-lg mx-auto">
       <div className="text-center mb-6 mt-7">
-        <h1 className="text-2xl font-bold">Create Account</h1>
+        <h1 className="text-2xl font-bold">Welcome Back! LogIn Please!</h1>
         <p>Start Your adventure with Wanderlust</p>
       </div>
       <Card className="max-w-xl mx-auto border">
         <Form onSubmit={onSubmit} className="flex w-96 flex-col gap-4 mx-auto">
-          {/* For name */}
-          <TextField isRequired name="name" type="text">
-            <Label>Name</Label>
-            <Input placeholder="Enter your name" />
-            <FieldError />
-          </TextField>
-
-          {/* for image */}
-          <TextField name="image" type="url">
-            <Label>Image URL</Label>
-            <Input placeholder="Enter Image URL" />
-            <FieldError />
-          </TextField>
+          <h1 className="text-2xl font-bold text-cyan-500">LogIn</h1>
           {/* for email */}
           <TextField
             isRequired
@@ -104,7 +90,7 @@ const SignUpPage = () => {
           </TextField>
           <div className="flex justify-center">
             <Button type="submit" className={"rounded-none w-full"}>
-              Create Account
+              LogIn
             </Button>
           </div>
         </Form>
@@ -113,4 +99,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default LogInPage;
