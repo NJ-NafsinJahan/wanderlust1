@@ -1,10 +1,23 @@
-import React from "react";
+"use client";
+import React, { use } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
+import { Avatar, Button } from "@heroui/react";
 
 const Navbar = () => {
+  const { data: session } = authClient.useSession();
+  // console.log(session);
+  const user = session?.user;
+  console.log(user);
+
+  // function for signOut
+  const handleSignOut = async () => {
+    await authClient.signOut();
+  };
+
   return (
-    <nav className="flex justify-between bg-white p-2 m-3">
+    <nav className="flex justify-between items-center bg-white p-2 m-3">
       {/* left div */}
       <div>
         <ul className="flex justify-between items-center gap-5">
@@ -36,15 +49,35 @@ const Navbar = () => {
       {/* right div */}
       <div>
         <ul className="flex justify-between items-center gap-5">
-          <li>
+          {/* <li>
             <Link href={"/profile"}>Profile</Link>
-          </li>
-          <li>
-            <Link href={"/login"}>LogIn</Link>
-          </li>
-          <li>
-            <Link href={"/signup"}>Sign Up</Link>
-          </li>
+          </li> */}
+
+          {user ? (
+            <>
+              <li>
+                <Avatar>
+                  <Avatar.Image alt="John Doe" src={user?.image} />
+                  <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
+                </Avatar>
+                <Link href={"/profile"}>Profile</Link>
+              </li>
+              <li>
+                <Button onClick={handleSignOut} variant="danger-soft">
+                  LogOut
+                </Button>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link href={"/login"}>LogIn</Link>
+              </li>
+              <li>
+                <Link href={"/signup"}>Sign Up</Link>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </nav>

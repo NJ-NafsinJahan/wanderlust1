@@ -9,6 +9,7 @@ import {
   Form,
   Input,
   Label,
+  Separator,
   TextField,
 } from "@heroui/react";
 import { Card } from "@heroui/react";
@@ -105,6 +106,15 @@ const SignUpPage = () => {
           <div className="flex justify-center">
             <Button type="submit" className={"rounded-none w-full"}>
               Create Account
+            </Button>
+          </div>
+          {/* For google sing up */}
+          <Separator>
+            <div className="whitespace-nowrap">Or SignUp with</div>
+          </Separator>
+          <div className={"rounded-none w-full"}>
+            <Button className={"rounded-none w-full"}>
+              SignUp with Google
             </Button>
           </div>
         </Form>

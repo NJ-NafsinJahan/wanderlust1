@@ -1,6 +1,5 @@
 "use client";
 import { authClient } from "@/lib/auth-client";
-import { Check } from "@gravity-ui/icons";
 import { toast } from "react-toastify";
 import {
   Button,
