@@ -7,6 +7,7 @@ import { Button } from "@heroui/react";
 import Link from "next/link";
 import { EditModal } from "@/components/EditModal";
 import { DeleteAlert } from "@/components/DeleteAlert";
+import BookingCard from "@/components/BookingCard";
 
 const DestinationDetailsPage = async ({ params }) => {
   const { id } = await params;
@@ -53,29 +54,32 @@ const DestinationDetailsPage = async ({ params }) => {
           className="w-full h-90"
         />
 
-        <div className="mt-5 gap-3">
-          <p className="flex items-center gap-3">
-            {" "}
-            <FiMapPin />
-            {country}
-          </p>
-
-          <div className="mt-2">
-            <h1 className="font-bold text-xl">{destinationName}</h1>
-          </div>
-          <p>
-            <span className="font-bold text-[20px]">Overview: </span>
-            {description}
-          </p>
-          <div className="flex items-center gap-7 mt-3">
+        <div className="flex justify-between">
+          <div className="mt-5 gap-3">
             <p className="flex items-center gap-3">
-              <IoCalendarOutline />
-              {duration} Days
+              {" "}
+              <FiMapPin />
+              {country}
             </p>
-            <p className="flex items-center">
-              <span className="font-bold text-[16px]">${price}</span>/person
+
+            <div className="mt-2">
+              <h1 className="font-bold text-xl">{destinationName}</h1>
+            </div>
+            <p>
+              <span className="font-bold text-[20px]">Overview: </span>
+              {description}
             </p>
+            <div className="flex items-center gap-7 mt-3">
+              <p className="flex items-center gap-3">
+                <IoCalendarOutline />
+                {duration} Days
+              </p>
+              <p className="flex items-center">
+                <span className="font-bold text-[16px]">${price}</span>/person
+              </p>
+            </div>
           </div>
+          <BookingCard destination={destination}></BookingCard>
         </div>
       </div>
     </div>

@@ -15,6 +15,7 @@ import {
 import { Card } from "@heroui/react";
 import { redirect } from "next/navigation";
 import React from "react";
+import { FcGoogle } from "react-icons/fc";
 
 const SignUpPage = () => {
   const onSubmit = async (e) => {
@@ -39,6 +40,13 @@ const SignUpPage = () => {
     if (error) {
       toast.error(error.message || "Signup failed");
     }
+  };
+
+  //   for google signUp
+  const handleGoogleSignIn = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
   };
 
   return (
@@ -109,12 +117,15 @@ const SignUpPage = () => {
             </Button>
           </div>
           {/* For google sing up */}
-          <Separator>
-            <div className="whitespace-nowrap">Or SignUp with</div>
-          </Separator>
-          <div className={"rounded-none w-full"}>
-            <Button className={"rounded-none w-full"}>
-              SignUp with Google
+          <div>
+            <div className="whitespace-nowrap text-center">Or SignUp with</div>
+
+            <Button
+              onClick={handleGoogleSignIn}
+              variant="outline"
+              className={"rounded-none w-full"}
+            >
+              <FcGoogle /> SignUp with Google
             </Button>
           </div>
         </Form>
