@@ -11,13 +11,16 @@ const AddDestinationPage = () => {
 
     console.log(destination, "formData working or not: ");
 
-    const res = await fetch("http://localhost:5000/destination", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/destination`,
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(destination),
       },
-      body: JSON.stringify(destination),
-    });
+    );
     const data = await res.json();
 
     console.log(data, "Data collect from backend api");

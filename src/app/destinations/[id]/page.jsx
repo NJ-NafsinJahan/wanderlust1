@@ -21,11 +21,14 @@ const DestinationDetailsPage = async ({ params }) => {
   console.log(tokenData, "jwt token");
   const token = tokenData?.token || tokenData?.accessToken;
 
-  const res = await fetch(`http://localhost:5000/destination/${id}`, {
-    headers: {
-      authorization: `Bearer ${token}`,
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/destination/${id}`,
+    {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
     },
-  });
+  );
   const destination = await res.json();
 
   console.log(destination, "single id details");
