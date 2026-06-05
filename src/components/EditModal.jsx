@@ -1,6 +1,4 @@
 "use client";
-
-import { Envelope } from "@gravity-ui/icons";
 import {
   Button,
   FieldError,

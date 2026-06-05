@@ -4,6 +4,7 @@ import { Button, DateField, Label } from "@heroui/react";
 import { Card } from "@heroui/react";
 // import { date } from "better-auth";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 const BookingCard = ({ destination }) => {
   const { data: session } = authClient.useSession();
@@ -20,7 +21,7 @@ const BookingCard = ({ destination }) => {
   //   function for handle booking
   const handleBooking = async () => {
     const bookingData = {
-      userId: user.id,
+      userId: user?.id,
       userImage: user.image,
       userName: user.name,
       destinationId: _id,
@@ -41,7 +42,11 @@ const BookingCard = ({ destination }) => {
       body: JSON.stringify(bookingData),
     });
     const data = await res.json();
-    console.log(data, "from bookingData");
+    // console.log(data, "from bookingData");
+    if (data) {
+      toast.success("Destination Booked successfully");
+      //   redirect("/");
+    }
   };
 
   return (

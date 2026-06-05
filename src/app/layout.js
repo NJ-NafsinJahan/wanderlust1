@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${josefinSans.className} h-full antialiased`}>
       <body>
         <Navbar></Navbar>
-        <main>{children}</main>
+        <main className="px-4 py-6">{children}</main>
         <ToastContainer />
 
         <Footer></Footer>
