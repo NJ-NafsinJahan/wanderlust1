@@ -34,10 +34,15 @@ const BookingCard = ({ destination }) => {
 
     // console.log(bookingData);
 
+    // access token from client component
+    const { data: tokenData } = await authClient.token();
+    // console.log(tokenData, " tokenData from BookingCard");
+
     const res = await fetch("http://localhost:5000/booking", {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${tokenData?.token}`,
       },
       body: JSON.stringify(bookingData),
     });

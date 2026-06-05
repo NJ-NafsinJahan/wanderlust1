@@ -13,7 +13,18 @@ const MyBookingPage = async () => {
   const user = session?.user;
   //   console.log(user);
 
-  const res = await fetch(`http://localhost:5000/booking/${user?.id}`);
+  // bring server component jwt token
+  const tokenData = await auth.api.getToken({
+    headers: await headers(),
+  });
+  console.log(tokenData, "jwt token");
+  const token = tokenData?.token || tokenData?.accessToken;
+
+  const res = await fetch(`http://localhost:5000/booking/${user?.id}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
   const bookings = await res.json();
   console.log("Data from MyBooKings:", bookings);
   return (
