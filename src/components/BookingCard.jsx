@@ -22,8 +22,8 @@ const BookingCard = ({ destination }) => {
   const handleBooking = async () => {
     const bookingData = {
       userId: user?.id,
-      userImage: user.image,
-      userName: user.name,
+      userImage: user?.image,
+      userName: user?.name,
       destinationId: _id,
       destinationName,
       imageUrl,

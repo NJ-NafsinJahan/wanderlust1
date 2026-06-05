@@ -8,11 +8,24 @@ import Link from "next/link";
 import { EditModal } from "@/components/EditModal";
 import { DeleteAlert } from "@/components/DeleteAlert";
 import BookingCard from "@/components/BookingCard";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 const DestinationDetailsPage = async ({ params }) => {
   const { id } = await params;
 
-  const res = await fetch(`http://localhost:5000/destination/${id}`);
+  // bring server component jwt token
+  const tokenData = await auth.api.getToken({
+    headers: await headers(),
+  });
+  console.log(tokenData, "jwt token");
+  const token = tokenData?.token || tokenData?.accessToken;
+
+  const res = await fetch(`http://localhost:5000/destination/${id}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
   const destination = await res.json();
 
   console.log(destination, "single id details");
